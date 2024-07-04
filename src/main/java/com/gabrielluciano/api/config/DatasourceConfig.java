@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import com.gabrielluciano.api.domain.Post;
 import com.gabrielluciano.api.domain.User;
 import com.gabrielluciano.api.dto.AuthorDTO;
+import com.gabrielluciano.api.dto.CommentDTO;
 import com.gabrielluciano.api.repository.PostRepository;
 import com.gabrielluciano.api.repository.UserRepository;
 
@@ -42,6 +43,13 @@ public class DatasourceConfig implements CommandLineRunner {
 
         Post post2 = new Post(null, LocalDate.parse("23/03/2018", fmt), "Bom dia",
                 "Acordei feliz hoje!", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem mano", LocalDate.parse("21/03/2018", fmt), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite", LocalDate.parse("23/03/2018", fmt), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia", LocalDate.parse("23/03/2018", fmt), new AuthorDTO(alex));
+
+        post1.getComments().addAll(List.of(c1, c2));
+        post2.getComments().add(c3);
 
         postRepository.saveAll(List.of(post1, post2));
 
