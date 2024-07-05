@@ -1,5 +1,6 @@
 package com.gabrielluciano.api.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class PostService {
 
     public List<Post> findByTitle(String text) {
         return repository.findByTitle(text);
+    }
+
+    public List<Post> fullSearch(String text, LocalDate minDate, LocalDate maxDate) {
+        return repository.fullSearch(text, minDate, maxDate);
     }
 }
